@@ -4,7 +4,7 @@ import * as data from '../../data.json';
 
 const { alertNumber } = data;
 
-export default class Navigation extends React.Component {
+export default class BottomNav extends React.Component {
   state = {
     index: 0,
     routes: [

@@ -1,0 +1,6 @@
+{
+  "h1": {
+    "type": "yes-no",
+    "question": "Did you experience any headaches since your last entry?"
+  }
+}
