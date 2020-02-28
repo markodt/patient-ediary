@@ -10,7 +10,6 @@ import {
 import { Card, Button } from 'react-native-paper';
 import BottomNav from '../navigation/BottomNav';
 import * as data from '../../data.json';
-import * as screens from '../../screens_en.json';
 
 export default function HomeScreen({ navigation }) {
   const { name, currentWeek, totalWeeks, activityNumber } = data;
@@ -52,9 +51,7 @@ export default function HomeScreen({ navigation }) {
               mode="contained"
               uppercase={false}
               style={styles.beginButton}
-              onPress={() =>
-                navigation.navigate('H1', { question: screens.h1.question })
-              }
+              onPress={() => navigation.navigate('h1')}
             >
               Begin Headache Diary
             </Button>

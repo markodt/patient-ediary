@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { RadioButton, Button } from 'react-native-paper';
+import * as screens from '../../screens_en.json';
 
 export default class YesNoScreen extends React.Component {
   state = {
@@ -8,13 +9,12 @@ export default class YesNoScreen extends React.Component {
   };
 
   render() {
-    const {
-      route: { params },
-    } = this.props;
+    const { route, navigation } = this.props;
+    const screen = screens[route.name];
 
     return (
       <View style={styles.container}>
-        <Text style={styles.question}>{params.question}</Text>
+        <Text style={styles.question}>{screen.text}</Text>
         <View style={styles.radioButtonContainer}>
           <RadioButton.Group
             onValueChange={value => this.setState({ value })}
@@ -37,6 +37,11 @@ export default class YesNoScreen extends React.Component {
             mode="contained"
             uppercase={false}
             disabled={!this.state.value}
+            onPress={() =>
+              navigation.navigate(
+                this.state.value === 'yes' ? screen.nextYes : screen.nextNo,
+              )
+            }
           >
             Next
           </Button>
@@ -49,7 +54,7 @@ export default class YesNoScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
-    height: '100%',
+    flex: 1,
   },
   question: {
     fontSize: 18,

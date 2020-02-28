@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './src/components/HomeScreen';
 import YesNoScreen from './src/components/YesNoScreen';
+import DateTimeScreen from './src/components/DateTimeScreen';
 
 const theme = {
   ...DefaultTheme,
@@ -26,15 +27,19 @@ export default function App() {
     <PaperProvider theme={theme}>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="Home"
+          initialRouteName="h0"
           screenOptions={{ title: 'Headache Diary' }}
         >
           <Stack.Screen
-            name="Home"
+            name="h0"
             component={HomeScreen}
             options={{ headerShown: false }}
           />
-          <Stack.Screen name="H1" component={YesNoScreen} />
+          <Stack.Screen name="h1" component={YesNoScreen} />
+          <Stack.Screen name="h2" component={DateTimeScreen} />
+          <Stack.Screen name="h3" component={YesNoScreen} />
+          <Stack.Screen name="h4" component={DateTimeScreen} />
+          <Stack.Screen name="h5" component={YesNoScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>

@@ -1,6 +1,34 @@
 {
   "h1": {
     "type": "yes-no",
-    "question": "Did you experience any headaches since your last entry?"
+    "text": "Did you experience any headaches since your last entry?",
+    "nextYes": "h2",
+    "nextNo": "h17.1"
+  },
+  "h2": {
+    "type": "date-time",
+    "text": "Please enter the START date and time for this headache:",
+    "dateLabel": "Start date",
+    "timeLabel": "Start time",
+    "next": "h3"
+  },
+  "h3": {
+    "type": "yes-no",
+    "text": "Is this headache still ongoing?",
+    "nextYes": "h3.1",
+    "nextNo": "h4"
+  },
+  "h4": {
+    "type": "date-time",
+    "text": "Please enter the END date and time for this headache:",
+    "dateLabel": "End date",
+    "timeLabel": "End time",
+    "next": "h5"
+  },
+  "h5": {
+    "type": "yes-no",
+    "text": "Did you experience aura with this headache?",
+    "nextYes": "h6",
+    "nextNo": "h6"
   }
 }
