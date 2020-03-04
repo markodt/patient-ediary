@@ -30,5 +30,83 @@
     "text": "Did you experience aura with this headache?",
     "nextYes": "h6",
     "nextNo": "h6"
+  },
+  "h6": {
+    "type": "yes-no",
+    "text": "Did you experience nausea with this headache?",
+    "nextYes": "h7",
+    "nextNo": "h7"
+  },
+  "h7": {
+    "type": "yes-no",
+    "text": "Did you experience vomiting with this headache?",
+    "nextYes": "h8",
+    "nextNo": "h8"
+  },
+  "h8": {
+    "type": "yes-no",
+    "text": "Did you experience sensitivity to light with this headache?",
+    "nextYes": "h9",
+    "nextNo": "h9"
+  },
+  "h9": {
+    "type": "yes-no",
+    "text": "Did you experience sensitivity to sound with this headache?",
+    "nextYes": "h10",
+    "nextNo": "h10"
+  },
+  "h10": {
+    "type": "yes-no",
+    "text": "At any time during this headache, did the pain pulsate, pound or throb?",
+    "nextYes": "h11",
+    "nextNo": "h11"
+  },
+  "h11": {
+    "type": "yes-no",
+    "text": "Was the headache predominantly on one side of your head?",
+    "nextYes": "h12",
+    "nextNo": "h12"
+  },
+  "h12": {
+    "type": "yes-no",
+    "text": "Was the headache aggravated by routine physical activity or did you avoid routine physical activity as a result of this headache?",
+    "nextYes": "h13",
+    "nextNo": "h13"
+  },
+  "h13": {
+    "type": "multiple-choice",
+    "text": "What was the maximum severity of this headache?",
+    "choices": ["Mild pain", "Moderate pain", "Severe pain"],
+    "next": "h14"
+  },
+  "h14": {
+    "type": "yes-no",
+    "text": "Did you take any medication to treat this headache?",
+    "nextYes": "h15",
+    "nextNo": "h18"
+  },
+  "h15": {
+    "type": "multiple-choice",
+    "text": "Did you take any of the following medications today?",
+    "choices": ["Ergotamine", "Triptan", "Analgesic", "Opioid", "Combination Analgesic", "None"],
+    "next": "h16"
+  },
+  "h16": {
+    "type": "yes-no",
+    "text": "Did you take this medication because you believed that you were having a migraine?",
+    "nextYes": "h17",
+    "nextNo": "h17"
+  },
+  "h17": {
+    "type": "yes-no",
+    "text": "Do you believe that the medication you took resulted in freedom from pain?",
+    "nextYes": "h18",
+    "nextNo": "h18"
+  },
+  "h17.1": {
+    "type": "yes-no",
+    "text": "Did you experience aura without a headache since your last entry?",
+    "nextYes": "h18",
+    "nextNo": "h18"
   }
 }

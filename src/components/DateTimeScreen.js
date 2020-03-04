@@ -1,5 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet, Platform } from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Platform,
+} from 'react-native';
 import { Button } from 'react-native-paper';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Feather } from '@expo/vector-icons';
@@ -48,34 +54,32 @@ export default class DateTimeScreen extends React.Component {
       <View style={styles.container}>
         <Text style={styles.message}>{screen.text}</Text>
         <View style={styles.dateTimeSection}>
-          <View
-            style={styles.dateTimeField}
-            onStartShouldSetResponder={this.showDatePicker}
-          >
-            <Text style={styles.dateTimeText}>
-              {selected ? moment(date).format('L') : screen.dateLabel}
-            </Text>
-            <Feather
-              name="calendar"
-              size={16}
-              color="#757575"
-              style={styles.dateTimeIcon}
-            />
-          </View>
-          <View
-            style={styles.dateTimeField}
-            onStartShouldSetResponder={this.showTimePicker}
-          >
-            <Text style={styles.dateTimeText}>
-              {selected ? moment(date).format('LT') : screen.timeLabel}
-            </Text>
-            <Feather
-              name="clock"
-              size={16}
-              color="#757575"
-              style={styles.dateTimeIcon}
-            />
-          </View>
+          <TouchableOpacity onPress={this.showDatePicker}>
+            <View style={styles.dateTimeField}>
+              <Text style={styles.dateTimeText}>
+                {selected ? moment(date).format('LL') : screen.dateLabel}
+              </Text>
+              <Feather
+                name="calendar"
+                size={16}
+                color="#757575"
+                style={styles.dateTimeIcon}
+              />
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={this.showTimePicker}>
+            <View style={styles.dateTimeField}>
+              <Text style={styles.dateTimeText}>
+                {selected ? moment(date).format('LT') : screen.timeLabel}
+              </Text>
+              <Feather
+                name="clock"
+                size={16}
+                color="#757575"
+                style={styles.dateTimeIcon}
+              />
+            </View>
+          </TouchableOpacity>
         </View>
         <View style={styles.bottomSection}>
           <Button
