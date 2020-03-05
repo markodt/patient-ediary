@@ -92,7 +92,15 @@ export default class DateTimeScreen extends React.Component {
           </Button>
         </View>
         {show && (
-          <DateTimePicker value={date} mode={mode} onChange={this.onChange} />
+          <DateTimePicker
+            value={date}
+            mode={mode}
+            minimumDate={moment()
+              .subtract(7, 'days')
+              .toDate()}
+            maximumDate={moment().toDate()}
+            onChange={this.onChange}
+          />
         )}
       </View>
     );

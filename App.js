@@ -3,6 +3,7 @@ import React from 'react';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { BackButton, ExitButton } from './src/components/Header';
 import HomeScreen from './src/components/HomeScreen';
 import YesNoScreen from './src/components/YesNoScreen';
 import DateTimeScreen from './src/components/DateTimeScreen';
@@ -31,7 +32,15 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator
           initialRouteName="h0"
-          screenOptions={{ title: 'Headache Diary' }}
+          screenOptions={{
+            headerTitle: 'Headache Diary',
+            headerTitleAlign: 'center',
+            headerTitleStyle: { fontSize: 16 },
+            headerLeft: () => <BackButton />,
+            headerLeftContainerStyle: { paddingLeft: 10 },
+            headerRight: () => <ExitButton />,
+            headerRightContainerStyle: { paddingRight: 10 },
+          }}
         >
           <Stack.Screen
             name="h0"
