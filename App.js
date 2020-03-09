@@ -1,16 +1,24 @@
 import 'react-native-gesture-handler';
 import React from 'react';
+import { StyleSheet } from 'react-native';
 import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { BackButton, ExitButton } from './src/components/Header';
+import AlertsScreen from './src/components/AlertsScreen';
 import HomeScreen from './src/components/HomeScreen';
+import SettingsScreen from './src/components/SettingsScreen';
 import YesNoScreen from './src/components/YesNoScreen';
 import DateTimeScreen from './src/components/DateTimeScreen';
 import OngoingHeadacheScreen from './src/components/OngoingHeadacheScreen';
 import MultipleChoiceScreen from './src/components/MultipleChoiceScreen';
 import DiaryCompleteScreen from './src/components/DiaryCompleteScreen';
+import * as data from './data.json';
 
+const Stack = createStackNavigator();
+const Tab = createMaterialBottomTabNavigator();
 const theme = {
   ...DefaultTheme,
   colors: {
@@ -23,8 +31,7 @@ const theme = {
     text: '#000',
   },
 };
-
-const Stack = createStackNavigator();
+const { alertNumber } = data;
 
 export default function App() {
   return (
@@ -42,11 +49,60 @@ export default function App() {
             headerRightContainerStyle: { paddingRight: 10 },
           }}
         >
-          <Stack.Screen
-            name="h0"
-            component={HomeScreen}
-            options={{ headerShown: false }}
-          />
+          <Stack.Screen name="h0" options={{ headerShown: false }}>
+            {() => (
+              <Tab.Navigator
+                initialRouteName="home"
+                activeColor="#0079c9"
+                inactiveColor="#757575"
+                barStyle={styles.tabNavigator}
+              >
+                <Tab.Screen
+                  name="alerts"
+                  component={AlertsScreen}
+                  options={{
+                    tabBarLabel: 'Alerts',
+                    tabBarIcon: ({ color }) => (
+                      <MaterialCommunityIcons
+                        name="bell"
+                        color={color}
+                        size={26}
+                      />
+                    ),
+                    tabBarBadge: alertNumber,
+                  }}
+                />
+                <Tab.Screen
+                  name="home"
+                  component={HomeScreen}
+                  options={{
+                    tabBarLabel: 'Home',
+                    tabBarIcon: ({ color }) => (
+                      <MaterialCommunityIcons
+                        name="home"
+                        color={color}
+                        size={26}
+                      />
+                    ),
+                  }}
+                />
+                <Tab.Screen
+                  name="settings"
+                  component={SettingsScreen}
+                  options={{
+                    tabBarLabel: 'Settings',
+                    tabBarIcon: ({ color }) => (
+                      <MaterialCommunityIcons
+                        name="settings"
+                        color={color}
+                        size={26}
+                      />
+                    ),
+                  }}
+                />
+              </Tab.Navigator>
+            )}
+          </Stack.Screen>
           <Stack.Screen name="h1" component={YesNoScreen} />
           <Stack.Screen name="h2" component={DateTimeScreen} />
           <Stack.Screen name="h3" component={YesNoScreen} />
@@ -72,3 +128,11 @@ export default function App() {
     </PaperProvider>
   );
 }
+
+const styles = StyleSheet.create({
+  tabNavigator: {
+    backgroundColor: '#fff',
+    borderTopColor: '#d8d8d8',
+    borderTopWidth: 1,
+  },
+});

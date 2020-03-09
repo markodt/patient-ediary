@@ -8,7 +8,6 @@ import {
   StyleSheet,
 } from 'react-native';
 import { Card, Button } from 'react-native-paper';
-import BottomNav from '../navigation/BottomNav';
 import * as data from '../../data.json';
 
 export default function HomeScreen({ navigation }) {
@@ -57,9 +56,6 @@ export default function HomeScreen({ navigation }) {
             </Button>
           </Card.Content>
         </Card>
-      </View>
-      <View style={styles.bottomNav}>
-        <BottomNav />
       </View>
     </View>
   );
@@ -130,10 +126,5 @@ const styles = StyleSheet.create({
   },
   beginButton: {
     marginTop: 20,
-  },
-  bottomNav: {
-    height: 70,
-    borderTopColor: '#d8d8d8',
-    borderTopWidth: 1,
   },
 });
