@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { RadioButton, Button } from 'react-native-paper';
-import * as screens from '../../screens_en.json';
+import * as screens from '../../branching.json';
 
-export default class MultipleChoiceScreen extends React.Component {
+export default class YesNoScreen extends React.Component {
   state = {
     value: null,
   };
@@ -20,16 +20,16 @@ export default class MultipleChoiceScreen extends React.Component {
             onValueChange={value => this.setState({ value })}
             value={this.state.value}
           >
-            {screen.choices.map((value, index) => {
-              return (
-                <RadioButton.Item
-                  key={index}
-                  label={value}
-                  value={value.toLowerCase()}
-                  style={styles.radioButton}
-                />
-              );
-            })}
+            <RadioButton.Item
+              label="Yes"
+              value="yes"
+              style={styles.radioButton}
+            />
+            <RadioButton.Item
+              label="No"
+              value="no"
+              style={styles.radioButton}
+            />
           </RadioButton.Group>
         </View>
         <View style={styles.bottomSection}>
@@ -37,7 +37,11 @@ export default class MultipleChoiceScreen extends React.Component {
             mode="contained"
             uppercase={false}
             disabled={!this.state.value}
-            onPress={() => navigation.navigate(screen.next)}
+            onPress={() =>
+              navigation.navigate(
+                this.state.value === 'yes' ? screen.nextYes : screen.nextNo,
+              )
+            }
           >
             Next
           </Button>

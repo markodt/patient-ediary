@@ -10,7 +10,7 @@ import { Button } from 'react-native-paper';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Feather } from '@expo/vector-icons';
 import moment from 'moment';
-import * as screens from '../../screens_en.json';
+import * as screens from '../../branching.json';
 
 export default class DateTimeScreen extends React.Component {
   state = {
