@@ -1,8 +1,10 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { Button } from 'react-native-paper';
+import { LocalizationContext } from '../localization/i18n';
 
 export default function OngoingHeadacheScreen({ navigation }) {
+  const { t } = React.useContext(LocalizationContext);
   return (
     <View style={styles.container}>
       <View style={styles.centerContent}>
@@ -11,10 +13,11 @@ export default function OngoingHeadacheScreen({ navigation }) {
           source={require('../../images/headache1_big.png')}
         />
       </View>
-      <Text style={[styles.title, styles.centerText]}>Ongoing Headache</Text>
+      <Text style={[styles.title, styles.centerText]}>
+        {t('ongoingHeadache-title')}
+      </Text>
       <Text style={[styles.noteText, styles.centerText]}>
-        When this headache has ended, please tap the “Finish Headache Diary”
-        button on the home screen.
+        {t('ongoingHeadache-noteText')}
       </Text>
       <View style={styles.bottomSection}>
         <Button
@@ -22,7 +25,7 @@ export default function OngoingHeadacheScreen({ navigation }) {
           uppercase={false}
           onPress={() => navigation.navigate('h0')}
         >
-          Return Home
+          {t('navigation-returnHomeButton')}
         </Button>
       </View>
     </View>

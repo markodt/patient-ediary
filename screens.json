@@ -1,0 +1,90 @@
+{
+  "h1": {
+    "type": "yes-no",
+    "nextYes": "h2",
+    "nextNo": "h17_1"
+  },
+  "h2": {
+    "type": "date-time",
+    "next": "h3"
+  },
+  "h3": {
+    "type": "yes-no",
+    "nextYes": "h3_1",
+    "nextNo": "h4"
+  },
+  "h4": {
+    "type": "date-time",
+    "next": "h5"
+  },
+  "h5": {
+    "type": "yes-no",
+    "nextYes": "h6",
+    "nextNo": "h6"
+  },
+  "h6": {
+    "type": "yes-no",
+    "nextYes": "h7",
+    "nextNo": "h7"
+  },
+  "h7": {
+    "type": "yes-no",
+    "nextYes": "h8",
+    "nextNo": "h8"
+  },
+  "h8": {
+    "type": "yes-no",
+    "nextYes": "h9",
+    "nextNo": "h9"
+  },
+  "h9": {
+    "type": "yes-no",
+    "nextYes": "h10",
+    "nextNo": "h10"
+  },
+  "h10": {
+    "type": "yes-no",
+    "nextYes": "h11",
+    "nextNo": "h11"
+  },
+  "h11": {
+    "type": "yes-no",
+    "nextYes": "h12",
+    "nextNo": "h12"
+  },
+  "h12": {
+    "type": "yes-no",
+    "nextYes": "h13",
+    "nextNo": "h13"
+  },
+  "h13": {
+    "type": "multiple-choice",
+    "choices": ["choice1", "choice2", "choice3"],
+    "next": "h14"
+  },
+  "h14": {
+    "type": "yes-no",
+    "nextYes": "h15",
+    "nextNo": "h18"
+  },
+  "h15": {
+    "type": "multiple-choice",
+    "choices": ["choice1", "choice2", "choice3", "choice4", "choice5", "choice6"],
+    "next": "h16"
+  },
+  "h16": {
+    "type": "yes-no",
+    "nextYes": "h17",
+    "nextNo": "h17"
+  },
+  "h17": {
+    "type": "yes-no",
+    "nextYes": "h18",
+    "nextNo": "h18"
+  },
+  "h17_1": {
+    "type": "yes-no",
+    "nextYes": "h18",
+    "nextNo": "h18"
+  }
+}

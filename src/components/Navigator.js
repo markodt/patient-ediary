@@ -28,7 +28,7 @@ export default function Navigator() {
       <Stack.Navigator
         initialRouteName="h0"
         screenOptions={{
-          headerTitle: t('headacheDiary'),
+          headerTitle: t('header-title'),
           headerTitleAlign: 'center',
           headerTitleStyle: { fontSize: 16 },
           headerLeft: () => <BackButton />,
@@ -49,7 +49,7 @@ export default function Navigator() {
                 name="alerts"
                 component={AlertsScreen}
                 options={{
-                  tabBarLabel: 'Alerts',
+                  tabBarLabel: t('alerts-label'),
                   tabBarIcon: ({ color }) => (
                     <MaterialCommunityIcons
                       name="bell"
@@ -64,7 +64,7 @@ export default function Navigator() {
                 name="home"
                 component={HomeScreen}
                 options={{
-                  tabBarLabel: 'Home',
+                  tabBarLabel: t('home-label'),
                   tabBarIcon: ({ color }) => (
                     <MaterialCommunityIcons
                       name="home"
@@ -78,7 +78,7 @@ export default function Navigator() {
                 name="settings"
                 component={SettingsScreen}
                 options={{
-                  tabBarLabel: 'Settings',
+                  tabBarLabel: t('settings-label'),
                   tabBarIcon: ({ color }) => (
                     <MaterialCommunityIcons
                       name="settings"
@@ -94,7 +94,7 @@ export default function Navigator() {
         <Stack.Screen name="h1" component={YesNoScreen} />
         <Stack.Screen name="h2" component={DateTimeScreen} />
         <Stack.Screen name="h3" component={YesNoScreen} />
-        <Stack.Screen name="h3.1" component={OngoingHeadacheScreen} />
+        <Stack.Screen name="h3_1" component={OngoingHeadacheScreen} />
         <Stack.Screen name="h4" component={DateTimeScreen} />
         <Stack.Screen name="h5" component={YesNoScreen} />
         <Stack.Screen name="h6" component={YesNoScreen} />
@@ -109,7 +109,7 @@ export default function Navigator() {
         <Stack.Screen name="h15" component={MultipleChoiceScreen} />
         <Stack.Screen name="h16" component={YesNoScreen} />
         <Stack.Screen name="h17" component={YesNoScreen} />
-        <Stack.Screen name="h17.1" component={YesNoScreen} />
+        <Stack.Screen name="h17_1" component={YesNoScreen} />
         <Stack.Screen name="h18" component={DiaryCompleteScreen} />
       </Stack.Navigator>
     </NavigationContainer>

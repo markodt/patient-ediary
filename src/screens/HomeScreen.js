@@ -8,30 +8,32 @@ import {
   StyleSheet,
 } from 'react-native';
 import { Card, Button } from 'react-native-paper';
+import { LocalizationContext } from '../localization/i18n';
 import * as data from '../../data.json';
 
 export default function HomeScreen({ navigation }) {
   const { name, currentWeek, totalWeeks, activityNumber } = data;
+  const { t } = React.useContext(LocalizationContext);
 
   return (
     <View style={styles.container}>
       <View style={styles.welcomeView}>
         <Text style={[styles.welcomeText, styles.centerText]}>
-          Welcome {name}
+          {t('home-welcome')} {name}
         </Text>
         <Text style={[styles.weekText, styles.centerText]}>
-          Week {currentWeek} of {totalWeeks}
+          {t('home-week')} {currentWeek} {t('home-of')} {totalWeeks}
         </Text>
         <Text style={[styles.activityText, styles.centerText]}>
-          You have {activityNumber}{' '}
-          {activityNumber === 1 ? 'activity' : 'activities'}
+          {t('home-youHave')} {activityNumber}{' '}
+          {activityNumber === 1 ? t('home-activity') : t('home-activities')}
         </Text>
       </View>
       <View style={styles.cardView}>
         <Card style={styles.card}>
           <Card.Content>
             <Text style={[styles.title, styles.centerText]}>
-              Headache Diary
+              {t('home-title')}
             </Text>
             <View style={styles.centerContent}>
               <Image
@@ -40,11 +42,10 @@ export default function HomeScreen({ navigation }) {
               />
             </View>
             <Text style={[styles.mainText, styles.centerText]}>
-              Please record any headaches you’ve experienced here.
+              {t('home-mainText')}
             </Text>
             <Text style={[styles.noteText, styles.centerText]}>
-              Be sure to complete your diary every day, even if you didn’t
-              experience a headache.
+              {t('home-noteText')}
             </Text>
             <Button
               mode="contained"
@@ -52,7 +53,7 @@ export default function HomeScreen({ navigation }) {
               style={styles.beginButton}
               onPress={() => navigation.navigate('h1')}
             >
-              Begin Headache Diary
+              {t('home-beginButton')}
             </Button>
           </Card.Content>
         </Card>

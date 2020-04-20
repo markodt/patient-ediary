@@ -1,31 +1,38 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { RadioButton, Button } from 'react-native-paper';
-import * as screens from '../../branching.json';
+import { LocalizationContext } from '../localization/i18n';
+import * as screens from '../../screens.json';
 
 export default class MultipleChoiceScreen extends React.Component {
-  state = {
-    value: null,
-  };
+  static contextType = LocalizationContext;
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      value: null,
+    };
+  }
 
   render() {
     const { route, navigation } = this.props;
+    const { t } = this.context;
     const screen = screens[route.name];
 
     return (
       <View style={styles.container}>
-        <Text style={styles.question}>{screen.text}</Text>
+        <Text style={styles.question}>{t(route.name + '-text')}</Text>
         <View style={styles.radioButtonContainer}>
           <RadioButton.Group
             onValueChange={value => this.setState({ value })}
             value={this.state.value}
           >
-            {screen.choices.map((value, index) => {
+            {screen.choices.map((choice, index) => {
+              const label = t(route.name + '-' + choice);
               return (
                 <RadioButton.Item
                   key={index}
-                  label={value}
-                  value={value.toLowerCase()}
+                  label={label}
+                  value={label.toLowerCase()}
                   style={styles.radioButton}
                 />
               );
@@ -39,7 +46,7 @@ export default class MultipleChoiceScreen extends React.Component {
             disabled={!this.state.value}
             onPress={() => navigation.navigate(screen.next)}
           >
-            Next
+            {t('navigation-nextButton')}
           </Button>
         </View>
       </View>

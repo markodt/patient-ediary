@@ -10,17 +10,23 @@ import { Button } from 'react-native-paper';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Feather } from '@expo/vector-icons';
 import moment from 'moment';
-import * as screens from '../../branching.json';
+import 'moment/locale/de';
+import { LocalizationContext } from '../localization/i18n';
+import * as screens from '../../screens.json';
 
 export default class DateTimeScreen extends React.Component {
-  state = {
-    date: moment()
-      .startOf('day')
-      .toDate(),
-    mode: 'date',
-    show: false,
-    selected: false,
-  };
+  static contextType = LocalizationContext;
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      date: moment()
+        .startOf('day')
+        .toDate(),
+      mode: 'date',
+      show: false,
+      selected: false,
+    };
+  }
 
   onChange = (event, selectedDate) => {
     const date = selectedDate || this.state.date;
@@ -47,17 +53,21 @@ export default class DateTimeScreen extends React.Component {
 
   render() {
     const { route, navigation } = this.props;
+    const { t, locale } = this.context;
     const { date, mode, show, selected } = this.state;
     const screen = screens[route.name];
+    moment.locale(locale);
 
     return (
       <View style={styles.container}>
-        <Text style={styles.message}>{screen.text}</Text>
+        <Text style={styles.message}>{t(route.name + '-text')}</Text>
         <View style={styles.dateTimeSection}>
           <TouchableOpacity onPress={this.showDatePicker}>
             <View style={styles.dateTimeField}>
               <Text style={styles.dateTimeText}>
-                {selected ? moment(date).format('LL') : screen.dateLabel}
+                {selected
+                  ? moment(date).format('LL')
+                  : t(route.name + '-dateLabel')}
               </Text>
               <Feather
                 name="calendar"
@@ -70,7 +80,9 @@ export default class DateTimeScreen extends React.Component {
           <TouchableOpacity onPress={this.showTimePicker}>
             <View style={styles.dateTimeField}>
               <Text style={styles.dateTimeText}>
-                {selected ? moment(date).format('LT') : screen.timeLabel}
+                {selected
+                  ? moment(date).format('LT')
+                  : t(route.name + '-timeLabel')}
               </Text>
               <Feather
                 name="clock"
@@ -88,7 +100,7 @@ export default class DateTimeScreen extends React.Component {
             disabled={!selected}
             onPress={() => navigation.navigate(screen.next)}
           >
-            Next
+            {t('navigation-nextButton')}
           </Button>
         </View>
         {show && (

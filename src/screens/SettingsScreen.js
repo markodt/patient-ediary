@@ -18,8 +18,8 @@ export default class SettingsScreen extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>Settings</Text>
-        <Text style={styles.subtitle}>Change Language</Text>
+        <Text style={styles.title}>{t('settings-label')}</Text>
+        <Text style={styles.subtitle}>{t('settings-changeLanguage')}</Text>
         <View style={styles.radioButtonContainer}>
           <RadioButton.Group
             onValueChange={value => this.setState({ locale: value })}
@@ -47,7 +47,7 @@ export default class SettingsScreen extends React.Component {
               navigation.navigate('home');
             }}
           >
-            Save Settings
+            {t('settings-saveButton')}
           </Button>
         </View>
       </View>

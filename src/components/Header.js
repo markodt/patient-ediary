@@ -12,7 +12,7 @@ export function BackButton() {
       uppercase={false}
       onPress={() => navigation.goBack()}
     >
-      {t('back')}
+      {t('header-backButton')}
     </Button>
   );
 }
@@ -22,7 +22,7 @@ export function ExitButton() {
   const { t } = React.useContext(LocalizationContext);
   return (
     <Button uppercase={false} onPress={() => navigation.navigate('h0')}>
-      {t('exit')}
+      {t('header-exitButton')}
     </Button>
   );
 }

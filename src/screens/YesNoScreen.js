@@ -1,32 +1,38 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { RadioButton, Button } from 'react-native-paper';
-import * as screens from '../../branching.json';
+import { LocalizationContext } from '../localization/i18n';
+import * as screens from '../../screens.json';
 
 export default class YesNoScreen extends React.Component {
-  state = {
-    value: null,
-  };
+  static contextType = LocalizationContext;
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      value: null,
+    };
+  }
 
   render() {
     const { route, navigation } = this.props;
+    const { t } = this.context;
     const screen = screens[route.name];
 
     return (
       <View style={styles.container}>
-        <Text style={styles.question}>{screen.text}</Text>
+        <Text style={styles.question}>{t(route.name + '-text')}</Text>
         <View style={styles.radioButtonContainer}>
           <RadioButton.Group
             onValueChange={value => this.setState({ value })}
             value={this.state.value}
           >
             <RadioButton.Item
-              label="Yes"
+              label={t('label-yes')}
               value="yes"
               style={styles.radioButton}
             />
             <RadioButton.Item
-              label="No"
+              label={t('label-no')}
               value="no"
               style={styles.radioButton}
             />
@@ -43,7 +49,7 @@ export default class YesNoScreen extends React.Component {
               )
             }
           >
-            Next
+            {t('navigation-nextButton')}
           </Button>
         </View>
       </View>

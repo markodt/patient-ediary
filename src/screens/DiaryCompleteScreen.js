@@ -1,8 +1,10 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { Button } from 'react-native-paper';
+import { LocalizationContext } from '../localization/i18n';
 
 export default function DiaryCompleteScreen({ navigation }) {
+  const { t } = React.useContext(LocalizationContext);
   return (
     <View style={styles.container}>
       <View style={styles.centerContent}>
@@ -12,11 +14,10 @@ export default function DiaryCompleteScreen({ navigation }) {
         />
       </View>
       <Text style={[styles.title, styles.centerText]}>
-        Headache Diary Complete!
+        {t('diaryComplete-title')}
       </Text>
       <Text style={[styles.noteText, styles.centerText]}>
-        Keep up the great work. Please tap “Finish” to confirm and save these
-        answers, or tap “Back” to correct your answers.
+        {t('diaryComplete-noteText')}
       </Text>
       <View style={styles.bottomSection}>
         <Button
@@ -24,7 +25,7 @@ export default function DiaryCompleteScreen({ navigation }) {
           uppercase={false}
           onPress={() => navigation.navigate('h0')}
         >
-          Finish
+          {t('navigation-finishButton')}
         </Button>
       </View>
     </View>

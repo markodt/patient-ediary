@@ -1,10 +1,12 @@
 import React from 'react';
 import { View, Text, Platform, StatusBar, StyleSheet } from 'react-native';
+import { LocalizationContext } from '../localization/i18n';
 
 export default function AlertsScreen() {
+  const { t } = React.useContext(LocalizationContext);
   return (
     <View style={styles.container}>
-      <Text>Alerts</Text>
+      <Text>{t('alerts-label')}</Text>
     </View>
   );
 }
