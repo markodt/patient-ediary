@@ -1,10 +1,12 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { RadioButton, Button } from 'react-native-paper';
+import { connect } from 'react-redux';
+import { mapStateToProps, mapDispatchToProps } from '../redux/connect';
 import { LocalizationContext } from '../localization/i18n';
-import * as screens from '../../screens.json';
+import * as screens from '../data/screens.json';
 
-export default class YesNoScreen extends React.Component {
+class YesNoScreen extends React.Component {
   static contextType = LocalizationContext;
   constructor(props, context) {
     super(props, context);
@@ -13,14 +15,40 @@ export default class YesNoScreen extends React.Component {
     };
   }
 
+  handleNextButtonPress = screen => {
+    const {
+      navigation,
+      currentResponse,
+      addResponse,
+      changeResponse,
+    } = this.props;
+    const newResponse = {
+      id: screen.id,
+      type: screen.type,
+      value: this.state.value,
+    };
+
+    if (!currentResponse) {
+      addResponse(newResponse);
+    } else if (currentResponse.value !== this.state.value) {
+      changeResponse(newResponse);
+    }
+
+    navigation.navigate(
+      this.state.value === 'yes' ? screen.nextYes : screen.nextNo,
+    );
+  };
+
   render() {
-    const { route, navigation } = this.props;
+    const {
+      route: { name: screenId },
+    } = this.props;
     const { t } = this.context;
-    const screen = screens[route.name];
+    const screen = { ...screens[screenId], id: screenId };
 
     return (
       <View style={styles.container}>
-        <Text style={styles.question}>{t(route.name + '-text')}</Text>
+        <Text style={styles.question}>{t(screenId + '-text')}</Text>
         <View style={styles.radioButtonContainer}>
           <RadioButton.Group
             onValueChange={value => this.setState({ value })}
@@ -43,11 +71,7 @@ export default class YesNoScreen extends React.Component {
             mode="contained"
             uppercase={false}
             disabled={!this.state.value}
-            onPress={() =>
-              navigation.navigate(
-                this.state.value === 'yes' ? screen.nextYes : screen.nextNo,
-              )
-            }
+            onPress={() => this.handleNextButtonPress(screen)}
           >
             {t('navigation-nextButton')}
           </Button>
@@ -56,6 +80,11 @@ export default class YesNoScreen extends React.Component {
     );
   }
 }
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(YesNoScreen);
 
 const styles = StyleSheet.create({
   container: {

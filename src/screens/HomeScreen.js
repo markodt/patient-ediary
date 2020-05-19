@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { Card, Button } from 'react-native-paper';
 import { LocalizationContext } from '../localization/i18n';
-import * as data from '../../data.json';
+import * as data from '../data/mock.json';
 
 export default function HomeScreen({ navigation }) {
   const { name, currentWeek, totalWeeks, activityNumber } = data;

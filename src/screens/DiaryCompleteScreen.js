@@ -1,10 +1,17 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { Button } from 'react-native-paper';
+import { connect } from 'react-redux';
+import { getResponses } from '../redux/selectors';
 import { LocalizationContext } from '../localization/i18n';
 
-export default function DiaryCompleteScreen({ navigation }) {
+function DiaryCompleteScreen({ navigation, responses }) {
   const { t } = React.useContext(LocalizationContext);
+
+  const handleFinishButtonPress = () => {
+    navigation.navigate('h0');
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.centerContent}>
@@ -23,7 +30,7 @@ export default function DiaryCompleteScreen({ navigation }) {
         <Button
           mode="contained"
           uppercase={false}
-          onPress={() => navigation.navigate('h0')}
+          onPress={handleFinishButtonPress}
         >
           {t('navigation-finishButton')}
         </Button>
@@ -31,6 +38,13 @@ export default function DiaryCompleteScreen({ navigation }) {
     </View>
   );
 }
+
+const mapStateToProps = state => {
+  const responses = getResponses(state);
+  return { responses };
+};
+
+export default connect(mapStateToProps)(DiaryCompleteScreen);
 
 const styles = StyleSheet.create({
   container: {

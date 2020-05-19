@@ -1,9 +1,11 @@
 import 'react-native-gesture-handler';
 import React, { useState, useMemo } from 'react';
 import { Provider as PaperProvider } from 'react-native-paper';
-import Navigator from './src/components/Navigator';
+import { Provider as StoreProvider } from 'react-redux';
 import i18n, { LocalizationContext } from './src/localization/i18n';
-import { theme } from './theme';
+import store from './src/redux/store';
+import { theme } from './src/paper/theme';
+import Navigator from './src/components/Navigator';
 
 export default function App() {
   const [locale, setLocale] = useState(i18n.locale);
@@ -18,9 +20,11 @@ export default function App() {
 
   return (
     <LocalizationContext.Provider value={localizationContext}>
-      <PaperProvider theme={theme}>
-        <Navigator />
-      </PaperProvider>
+      <StoreProvider store={store}>
+        <PaperProvider theme={theme}>
+          <Navigator />
+        </PaperProvider>
+      </StoreProvider>
     </LocalizationContext.Provider>
   );
 }

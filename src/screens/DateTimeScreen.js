@@ -11,10 +11,12 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { Feather } from '@expo/vector-icons';
 import moment from 'moment';
 import 'moment/locale/de';
+import { connect } from 'react-redux';
+import { mapStateToProps, mapDispatchToProps } from '../redux/connect';
 import { LocalizationContext } from '../localization/i18n';
-import * as screens from '../../screens.json';
+import * as screens from '../data/screens.json';
 
-export default class DateTimeScreen extends React.Component {
+class DateTimeScreen extends React.Component {
   static contextType = LocalizationContext;
   constructor(props, context) {
     super(props, context);
@@ -28,17 +30,6 @@ export default class DateTimeScreen extends React.Component {
     };
   }
 
-  onChange = (event, selectedDate) => {
-    const date = selectedDate || this.state.date;
-    const selected = this.state.selected || Boolean(selectedDate);
-
-    this.setState({
-      date,
-      show: Platform.OS === 'ios' ? true : false,
-      selected,
-    });
-  };
-
   showMode = mode => {
     this.setState({ show: true, mode });
   };
@@ -51,23 +42,58 @@ export default class DateTimeScreen extends React.Component {
     this.showMode('time');
   };
 
+  handleDateChange = (event, selectedDate) => {
+    const date = selectedDate || this.state.date;
+    const selected = this.state.selected || Boolean(selectedDate);
+
+    this.setState({
+      date,
+      show: Platform.OS === 'ios' ? true : false,
+      selected,
+    });
+  };
+
+  handleNextButtonPress = screen => {
+    const {
+      navigation,
+      currentResponse,
+      addResponse,
+      changeResponse,
+    } = this.props;
+    const newResponse = {
+      id: screen.id,
+      type: screen.type,
+      value: this.state.date,
+    };
+
+    if (!currentResponse) {
+      addResponse(newResponse);
+    } else if (currentResponse.value.getTime() !== this.state.date.getTime()) {
+      changeResponse(newResponse);
+    }
+
+    navigation.navigate(screen.next);
+  };
+
   render() {
-    const { route, navigation } = this.props;
+    const {
+      route: { name: screenId },
+    } = this.props;
     const { t, locale } = this.context;
     const { date, mode, show, selected } = this.state;
-    const screen = screens[route.name];
+    const screen = { ...screens[screenId], id: screenId };
     moment.locale(locale);
 
     return (
       <View style={styles.container}>
-        <Text style={styles.message}>{t(route.name + '-text')}</Text>
+        <Text style={styles.message}>{t(screenId + '-text')}</Text>
         <View style={styles.dateTimeSection}>
           <TouchableOpacity onPress={this.showDatePicker}>
             <View style={styles.dateTimeField}>
               <Text style={styles.dateTimeText}>
                 {selected
                   ? moment(date).format('LL')
-                  : t(route.name + '-dateLabel')}
+                  : t(screenId + '-dateLabel')}
               </Text>
               <Feather
                 name="calendar"
@@ -82,7 +108,7 @@ export default class DateTimeScreen extends React.Component {
               <Text style={styles.dateTimeText}>
                 {selected
                   ? moment(date).format('LT')
-                  : t(route.name + '-timeLabel')}
+                  : t(screenId + '-timeLabel')}
               </Text>
               <Feather
                 name="clock"
@@ -98,7 +124,7 @@ export default class DateTimeScreen extends React.Component {
             mode="contained"
             uppercase={false}
             disabled={!selected}
-            onPress={() => navigation.navigate(screen.next)}
+            onPress={() => this.handleNextButtonPress(screen)}
           >
             {t('navigation-nextButton')}
           </Button>
@@ -111,13 +137,18 @@ export default class DateTimeScreen extends React.Component {
               .subtract(7, 'days')
               .toDate()}
             maximumDate={moment().toDate()}
-            onChange={this.onChange}
+            onChange={this.handleDateChange}
           />
         )}
       </View>
     );
   }
 }
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(DateTimeScreen);
 
 const styles = StyleSheet.create({
   container: {

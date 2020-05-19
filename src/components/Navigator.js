@@ -14,7 +14,7 @@ import OngoingHeadacheScreen from '../screens/OngoingHeadacheScreen';
 import MultipleChoiceScreen from '../screens/MultipleChoiceScreen';
 import DiaryCompleteScreen from '../screens/DiaryCompleteScreen';
 import { LocalizationContext } from '../localization/i18n';
-import * as data from '../../data.json';
+import * as data from '../data/mock.json';
 
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
