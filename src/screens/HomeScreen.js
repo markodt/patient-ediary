@@ -8,7 +8,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import { Card, Button } from 'react-native-paper';
-import { LocalizationContext } from '../localization/i18n';
+import { LocalizationContext } from '../localization/localization';
 import * as data from '../data/mock.json';
 
 export default function HomeScreen({ navigation }) {

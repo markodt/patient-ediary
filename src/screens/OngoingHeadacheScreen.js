@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { Button } from 'react-native-paper';
-import { LocalizationContext } from '../localization/i18n';
+import { LocalizationContext } from '../localization/localization';
 
 export default function OngoingHeadacheScreen({ navigation }) {
   const { t } = React.useContext(LocalizationContext);

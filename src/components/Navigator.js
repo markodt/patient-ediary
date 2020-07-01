@@ -13,7 +13,7 @@ import DateTimeScreen from '../screens/DateTimeScreen';
 import OngoingHeadacheScreen from '../screens/OngoingHeadacheScreen';
 import MultipleChoiceScreen from '../screens/MultipleChoiceScreen';
 import DiaryCompleteScreen from '../screens/DiaryCompleteScreen';
-import { LocalizationContext } from '../localization/i18n';
+import { LocalizationContext } from '../localization/localization';
 import * as data from '../data/mock.json';
 
 const Stack = createStackNavigator();

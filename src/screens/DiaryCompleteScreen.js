@@ -3,7 +3,7 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 import { Button } from 'react-native-paper';
 import { connect } from 'react-redux';
 import { getResponses } from '../redux/selectors';
-import { LocalizationContext } from '../localization/i18n';
+import { LocalizationContext } from '../localization/localization';
 
 function DiaryCompleteScreen({ navigation, responses }) {
   const { t } = React.useContext(LocalizationContext);

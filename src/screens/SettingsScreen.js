@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, Text, Platform, StatusBar, StyleSheet } from 'react-native';
 import { RadioButton, Button } from 'react-native-paper';
-import { Languages, LocalizationContext } from '../localization/i18n';
+import { Languages, LocalizationContext } from '../localization/localization';
+import { storeData } from '../storage/LocalStorage';
 
 export default class SettingsScreen extends React.Component {
   static contextType = LocalizationContext;
@@ -44,6 +45,7 @@ export default class SettingsScreen extends React.Component {
             disabled={this.state.locale === locale}
             onPress={() => {
               setLocale(this.state.locale);
+              storeData('@locale', this.state.locale);
               navigation.navigate('home');
             }}
           >

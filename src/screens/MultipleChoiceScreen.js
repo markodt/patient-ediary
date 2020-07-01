@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { RadioButton, Button } from 'react-native-paper';
 import { connect } from 'react-redux';
 import { mapStateToProps, mapDispatchToProps } from '../redux/connect';
-import { LocalizationContext } from '../localization/i18n';
+import { LocalizationContext } from '../localization/localization';
 import * as screens from '../data/screens.json';
 
 class MultipleChoiceScreen extends React.Component {

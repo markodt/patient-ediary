@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
-import { LocalizationContext } from '../localization/i18n';
+import { LocalizationContext } from '../localization/localization';
 
 export function BackButton() {
   const navigation = useNavigation();

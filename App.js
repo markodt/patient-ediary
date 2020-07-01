@@ -1,30 +1,67 @@
 import 'react-native-gesture-handler';
-import React, { useState, useMemo } from 'react';
+import React from 'react';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { Provider as StoreProvider } from 'react-redux';
-import i18n, { LocalizationContext } from './src/localization/i18n';
+import AsyncStorage from '@react-native-community/async-storage';
+import * as SplashScreen from 'expo-splash-screen';
+import localization, {
+  LocalizationContext,
+} from './src/localization/localization';
 import store from './src/redux/store';
 import { theme } from './src/paper/theme';
 import Navigator from './src/components/Navigator';
 
-export default function App() {
-  const [locale, setLocale] = useState(i18n.locale);
-  const localizationContext = useMemo(
-    () => ({
-      t: (scope, options) => i18n.t(scope, { locale, ...options }),
-      locale,
-      setLocale,
-    }),
-    [locale],
-  );
+export default class App extends React.Component {
+  state = {
+    appIsReady: false,
+    locale: 'en',
+  };
 
-  return (
-    <LocalizationContext.Provider value={localizationContext}>
-      <StoreProvider store={store}>
-        <PaperProvider theme={theme}>
-          <Navigator />
-        </PaperProvider>
-      </StoreProvider>
-    </LocalizationContext.Provider>
-  );
+  async componentDidMount() {
+    try {
+      await SplashScreen.preventAutoHideAsync();
+    } catch (e) {
+      console.warn(e);
+    }
+    this.getData();
+  }
+
+  getData = async () => {
+    try {
+      const locale = await AsyncStorage.getItem('@locale');
+      if (locale !== null) {
+        this.setState({ locale });
+      }
+
+      this.setState({ appIsReady: true }, async () => {
+        await SplashScreen.hideAsync();
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  render() {
+    if (!this.state.appIsReady) {
+      return null;
+    }
+
+    const { locale } = this.state;
+    localization.locale = locale;
+    const localizationContext = {
+      t: (scope, options) => localization.t(scope, { locale, ...options }),
+      locale,
+      setLocale: newLocale => this.setState({ locale: newLocale }),
+    };
+
+    return (
+      <LocalizationContext.Provider value={localizationContext}>
+        <StoreProvider store={store}>
+          <PaperProvider theme={theme}>
+            <Navigator />
+          </PaperProvider>
+        </StoreProvider>
+      </LocalizationContext.Provider>
+    );
+  }
 }

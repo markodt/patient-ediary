@@ -13,7 +13,7 @@ import moment from 'moment';
 import 'moment/locale/de';
 import { connect } from 'react-redux';
 import { mapStateToProps, mapDispatchToProps } from '../redux/connect';
-import { LocalizationContext } from '../localization/i18n';
+import { LocalizationContext } from '../localization/localization';
 import * as screens from '../data/screens.json';
 
 class DateTimeScreen extends React.Component {

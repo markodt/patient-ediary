@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Platform, StatusBar, StyleSheet } from 'react-native';
-import { LocalizationContext } from '../localization/i18n';
+import { LocalizationContext } from '../localization/localization';
 
 export default function AlertsScreen() {
   const { t } = React.useContext(LocalizationContext);
