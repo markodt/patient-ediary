@@ -15,6 +15,7 @@ export default class App extends React.Component {
   state = {
     appIsReady: false,
     locale: 'en',
+    lastEntryDate: null,
   };
 
   async componentDidMount() {
@@ -28,9 +29,13 @@ export default class App extends React.Component {
 
   getData = async () => {
     try {
-      const locale = await AsyncStorage.getItem('@locale');
+      const locale = await AsyncStorage.getItem('locale');
+      const lastEntryDate = await AsyncStorage.getItem('lastEntryDate');
       if (locale !== null) {
         this.setState({ locale });
+      }
+      if (lastEntryDate !== null) {
+        this.setState({ lastEntryDate });
       }
 
       this.setState({ appIsReady: true }, async () => {

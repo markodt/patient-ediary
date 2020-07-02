@@ -2,13 +2,16 @@ import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { Button } from 'react-native-paper';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import { getResponses } from '../redux/selectors';
 import { LocalizationContext } from '../localization/localization';
+import { storeData } from '../storage/LocalStorage';
 
 function DiaryCompleteScreen({ navigation, responses }) {
   const { t } = React.useContext(LocalizationContext);
 
   const handleFinishButtonPress = () => {
+    storeData('lastEntryDate', moment.utc().format());
     navigation.navigate('h0');
   };
 

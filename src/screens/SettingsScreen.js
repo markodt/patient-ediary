@@ -45,7 +45,7 @@ export default class SettingsScreen extends React.Component {
             disabled={this.state.locale === locale}
             onPress={() => {
               setLocale(this.state.locale);
-              storeData('@locale', this.state.locale);
+              storeData('locale', this.state.locale);
               navigation.navigate('home');
             }}
           >
