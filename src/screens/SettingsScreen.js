@@ -23,7 +23,7 @@ export default class SettingsScreen extends React.Component {
         <Text style={styles.subtitle}>{t('settings-changeLanguage')}</Text>
         <View style={styles.radioButtonContainer}>
           <RadioButton.Group
-            onValueChange={value => this.setState({ locale: value })}
+            onValueChange={(value) => this.setState({ locale: value })}
             value={this.state.locale}
           >
             {Object.entries(Languages).map(([langCode, langName]) => {

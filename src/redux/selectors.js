@@ -1,8 +1,12 @@
 /*
- * responses selectors
+ * selectors
  */
 
-export const getResponses = state => state.responses;
+export const getResponses = (state) => state.responses;
 
 export const getResponseById = (state, id) =>
-  state.responses ? state.responses.find(response => response.id === id) : null;
+  state.responses
+    ? state.responses.find((response) => response.id === id)
+    : null;
+
+export const getLastEntryDate = (state) => state.lastEntryDate;

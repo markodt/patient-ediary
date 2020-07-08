@@ -15,7 +15,7 @@ class MultipleChoiceScreen extends React.Component {
     };
   }
 
-  handleNextButtonPress = screen => {
+  handleNextButtonPress = (screen) => {
     const {
       navigation,
       currentResponse,
@@ -49,7 +49,7 @@ class MultipleChoiceScreen extends React.Component {
         <Text style={styles.question}>{t(screenId + '-text')}</Text>
         <View style={styles.radioButtonContainer}>
           <RadioButton.Group
-            onValueChange={value => this.setState({ value })}
+            onValueChange={(value) => this.setState({ value })}
             value={this.state.value}
           >
             {screen.choices.map((choice, index) => {

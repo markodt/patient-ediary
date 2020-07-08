@@ -3,6 +3,7 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 import { Button } from 'react-native-paper';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import { setLastEntryDate } from '../redux/actions';
 import { getResponses } from '../redux/selectors';
 import { LocalizationContext } from '../localization/localization';
 import { storeData } from '../storage/LocalStorage';
@@ -11,7 +12,9 @@ function DiaryCompleteScreen({ navigation, responses }) {
   const { t } = React.useContext(LocalizationContext);
 
   const handleFinishButtonPress = () => {
-    storeData('lastEntryDate', moment.utc().format());
+    const lastEntryDate = moment.utc().format();
+    setLastEntryDate(lastEntryDate);
+    storeData('lastEntryDate', lastEntryDate);
     navigation.navigate('h0');
   };
 
@@ -42,7 +45,7 @@ function DiaryCompleteScreen({ navigation, responses }) {
   );
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const responses = getResponses(state);
   return { responses };
 };

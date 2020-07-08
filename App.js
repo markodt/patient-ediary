@@ -8,6 +8,7 @@ import localization, {
   LocalizationContext,
 } from './src/localization/localization';
 import store from './src/redux/store';
+import { setLastEntryDate } from './src/redux/actions';
 import { theme } from './src/paper/theme';
 import Navigator from './src/components/Navigator';
 
@@ -15,7 +16,6 @@ export default class App extends React.Component {
   state = {
     appIsReady: false,
     locale: 'en',
-    lastEntryDate: null,
   };
 
   async componentDidMount() {
@@ -35,7 +35,7 @@ export default class App extends React.Component {
         this.setState({ locale });
       }
       if (lastEntryDate !== null) {
-        this.setState({ lastEntryDate });
+        setLastEntryDate(lastEntryDate);
       }
 
       this.setState({ appIsReady: true }, async () => {
@@ -56,7 +56,7 @@ export default class App extends React.Component {
     const localizationContext = {
       t: (scope, options) => localization.t(scope, { locale, ...options }),
       locale,
-      setLocale: newLocale => this.setState({ locale: newLocale }),
+      setLocale: (newLocale) => this.setState({ locale: newLocale }),
     };
 
     return (

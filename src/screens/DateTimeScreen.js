@@ -21,16 +21,14 @@ class DateTimeScreen extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      date: moment()
-        .startOf('day')
-        .toDate(),
+      date: moment().startOf('day').toDate(),
       mode: 'date',
       show: false,
       selected: false,
     };
   }
 
-  showMode = mode => {
+  showMode = (mode) => {
     this.setState({ show: true, mode });
   };
 
@@ -53,7 +51,7 @@ class DateTimeScreen extends React.Component {
     });
   };
 
-  handleNextButtonPress = screen => {
+  handleNextButtonPress = (screen) => {
     const {
       navigation,
       currentResponse,
@@ -133,9 +131,7 @@ class DateTimeScreen extends React.Component {
           <DateTimePicker
             value={date}
             mode={mode}
-            minimumDate={moment()
-              .subtract(7, 'days')
-              .toDate()}
+            minimumDate={moment().subtract(7, 'days').toDate()}
             maximumDate={moment().toDate()}
             onChange={this.handleDateChange}
           />
@@ -145,10 +141,7 @@ class DateTimeScreen extends React.Component {
   }
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(DateTimeScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(DateTimeScreen);
 
 const styles = StyleSheet.create({
   container: {

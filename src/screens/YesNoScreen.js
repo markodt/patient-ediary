@@ -15,7 +15,7 @@ class YesNoScreen extends React.Component {
     };
   }
 
-  handleNextButtonPress = screen => {
+  handleNextButtonPress = (screen) => {
     const {
       navigation,
       currentResponse,
@@ -51,7 +51,7 @@ class YesNoScreen extends React.Component {
         <Text style={styles.question}>{t(screenId + '-text')}</Text>
         <View style={styles.radioButtonContainer}>
           <RadioButton.Group
-            onValueChange={value => this.setState({ value })}
+            onValueChange={(value) => this.setState({ value })}
             value={this.state.value}
           >
             <RadioButton.Item
@@ -81,10 +81,7 @@ class YesNoScreen extends React.Component {
   }
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(YesNoScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(YesNoScreen);
 
 const styles = StyleSheet.create({
   container: {
