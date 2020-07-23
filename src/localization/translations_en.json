@@ -30,6 +30,8 @@
   "h4-text": "Please enter the END date and time for this headache:",
   "h4-dateLabel": "End date",
   "h4-timeLabel": "End time",
+  "h4-alertTitle": "Error",
+  "h4-alertMessage": "The selected END date and time cannot be the same or before the START date and time.",
   "h5-text": "Did you experience aura with this headache?",
   "h6-text": "Did you experience nausea with this headache?",
   "h7-text": "Did you experience vomiting with this headache?",

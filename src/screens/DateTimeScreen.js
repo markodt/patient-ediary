@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   Platform,
+  Alert,
 } from 'react-native';
 import { Button } from 'react-native-paper';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -12,7 +13,8 @@ import { Feather } from '@expo/vector-icons';
 import moment from 'moment';
 import 'moment/locale/de';
 import { connect } from 'react-redux';
-import { mapStateToProps, mapDispatchToProps } from '../redux/connect';
+import { mapDispatchToProps } from '../redux/connect';
+import { getResponses, getResponseById } from '../redux/selectors';
 import { LocalizationContext } from '../localization/localization';
 import * as screens from '../data/screens.json';
 
@@ -54,15 +56,27 @@ class DateTimeScreen extends React.Component {
   handleNextButtonPress = (screen) => {
     const {
       navigation,
+      responses,
       currentResponse,
       addResponse,
       changeResponse,
     } = this.props;
+    const { t } = this.context;
     const newResponse = {
       id: screen.id,
       type: screen.type,
       value: this.state.date,
     };
+
+    if (
+      screen.id === 'h4' &&
+      moment(this.state.date).isSameOrBefore(
+        responses.find((response) => response.id === 'h2').value,
+      )
+    ) {
+      Alert.alert(t('h4-alertTitle'), t('h4-alertMessage'));
+      return;
+    }
 
     if (!currentResponse) {
       addResponse(newResponse);
@@ -140,6 +154,13 @@ class DateTimeScreen extends React.Component {
     );
   }
 }
+
+export const mapStateToProps = (state, ownProps) => {
+  const screenId = ownProps.route.name;
+  const responses = getResponses(state);
+  const currentResponse = getResponseById(state, screenId);
+  return { responses, currentResponse };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(DateTimeScreen);
 

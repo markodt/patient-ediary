@@ -2,7 +2,7 @@ import { addResponse, changeResponse } from '../redux/actions';
 import { getResponseById } from '../redux/selectors';
 
 /*
- * connect function arguments
+ * connect function arguments for YesNoScreen, MultipleChoiceScreen and DateTimeScreen components
  */
 
 export const mapStateToProps = (state, ownProps) => {

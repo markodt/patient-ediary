@@ -30,6 +30,8 @@
   "h4-text": "Bitte geben Sie das Enddatum und die Endzeit für diese Kopfschmerzen ein:",
   "h4-dateLabel": "Enddatum",
   "h4-timeLabel": "Endzeit",
+  "h4-alertTitle": "Fehler",
+  "h4-alertMessage": "Das ausgewählte Enddatum und die Endzeit dürfen nicht identisch sein oder vor dem Startdatum und der Startzeit liegen.",
   "h5-text": "Haben Sie Aura mit diesen Kopfschmerzen erlebt?",
   "h6-text": "Haben Sie Übelkeit mit diesen Kopfschmerzen erleben?",
   "h7-text": "Haben Sie mit diesen Kopfschmerzen Erbrechen erlebt?",
